@@ -1,0 +1,17 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-top{
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-top ul{
+    display: flex;
+    list-style: none; 
+}
+.navbar-top ul li a{
+    text-decoration: none;
+    padding: 28px;
+    color: silver;
+}

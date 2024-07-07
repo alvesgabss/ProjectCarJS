@@ -1,0 +1,82 @@
+
+<style>
+       header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #444;
+        }
+
+        .navbar-top ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-top li {
+            margin: 0 10px;
+        }
+
+        .navbar-top a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-top a:hover {
+            color: #ffc107;
+        }
+
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+/* Estilo dos campos de entrada */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo do botão de envio */
+input[type=submit] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+/* Estilo do botão de envio ao passar o mouse */
+input[type=submit]:hover {
+    background-color: rgb(74, 128, 30);
+}
+
+</style> 
+    
+    <h1>Formulário de login</h1>
+
+    <form action="autenticar-usuario" method="post"> 
+        Login: <input type="text" id="login" name="login" required><br><br>
+        Senha: <input type="password" id="senha" name="senha" required><br><br>
+        <input type="submit" value="Logar">
+    </form>

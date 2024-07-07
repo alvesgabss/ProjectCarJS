@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.cdnfonts.com/css/fastup" rel="stylesheet">
+        
+    </head>
+<body>
+
+<h2>Representação gráfica do Objeto carro e suas funções</h2>
+
+
+<div class="Pista" id="pista"></div>
+
+<div id="divpainel">
+<h1 id="h1painel"> Crie um carro, então o painel aparecerá.</h1>
+</div>
+
+<div id="divformularios">
+<div id="divform1">
+    <h3 > Digite as informações abaixo para criar um Carro:</h3>
+<form id="form1">
+        Marca : 
+        <select name="marcas" id="marcas" required>
+            <option value="" selected disabled hidden>Selecione</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Wolks">Volks</option>
+            <option value="Chevrolet">Chevrolet</option>
+          </select> 
+          Modelo: 
+          <select name="modelos" id="modelos" disabled>
+            <option value="" selected disabled hidden>Selecione</option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+          </select> 
+
+          Ano: 
+          <select name="anos" id="anos" disabled>
+            <option value="" selected disabled hidden>Selecione</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select> 
+          <br>
+          Cor: <input type="color" name="cores" id="cores">
+          <br>
+
+          <button type="button" id="createButton">Criar Carro</button>
+          <button type="button" id="redefinirbutton">Redefinir Carro</button>
+          
+</form>
+</div>
+
+<div id="divform2">
+    <h3 > Digite as informações abaixo para criar uma Pista:</h3>
+    
+        <form id="form2">
+            Background: <select name="pistabg" id="pistabg">
+                <option value="nenhum">Nenhum</option>
+                <option value="bg1">Background 1</option>
+            </select>
+        </form>
+    </div>
+
+</div>
+
+
+<script>
+    // Criar uma variável global para o objeto carro; 
+
+    // Todos os ids dos meus intervalos
+    var idinterval1;
+    var idinterval2;
+// pegando elementos do formulário
+marcas = document.getElementById("marcas");
+modelos = document.getElementById("modelos");
+anos = document.getElementById("anos");
+cores= document.getElementById("cores");
+
+bt1 = document.getElementById("createButton");
+bt2 = document.getElementById("redefinirbutton");
+
+ // adicionando eventos a elementos do formulário
+ marcas.addEventListener("change",habilitaModelos); // habilita modelos quando uma marca é selecionada
+ modelos.addEventListener("change",habilitaAnos);
+
+bt1.addEventListener("click",criarCarro);
+bt2.addEventListener("click", reset);
+
+function habilitaModelos(){
+    
+    if (marcas.value=="Fiat") {
+        modelos.disabled = false;
+        modelos.options.item(1).innerHTML = "Argos";
+        modelos.options.item(1).value="Argos";
+        modelos.options.item(2).innerHTML = "Cronos";
+        modelos.options.item(2).value = "Cronos";
+        modelos.options.item(3).innerHTML = "Pulse";
+        modelos.options.item(3).value = "Pulse";
+    }
+   else if (marcas.value=="Mercedes") {
+        modelos.disabled = false;
+        modelos.options.item(1).innerHTML = "Classe E";
+        modelos.options.item(1).value = "Classe E";
+        modelos.options.item(2).innerHTML = "Classe G";
+        modelos.options.item(2).value = "Classe G";
+        modelos.options.item(3).innerHTML = "Classe GLA";
+        modelos.options.item(3).value = "Classe GLA";
+        
+    }
+    else if (marcas.value=="Wolks") {
+        modelos.disabled = false;
+        modelos.options.item(1).innerHTML = "Polo";
+        modelos.options.item(1).value = "Polo";
+        modelos.options.item(2).innerHTML = "Jetta";
+        modelos.options.item(2).value = "Jetta";
+        modelos.options.item(3).innerHTML = "Cross";
+        modelos.options.item(3).value = "Cross";
+    }
+    else if (marcas.value=="Chevrolet") {
+        modelos.disabled = false;
+        modelos.options.item(1).innerHTML = "Onix";
+        modelos.options.item(1).value = "Onix";
+        modelos.options.item(2).innerHTML = "Camaro";
+        modelos.options.item(2).value = "Camaro";
+        modelos.options.item(3).innerHTML = "Equinox";
+        modelos.options.item(3).value = "Equinox";
+    }
+}
+
+function habilitaAnos(){
+    anos.disabled = false;
+}
+
+// funções para manipulação do objeto
+// Carro já foi criado?
+
+
+// Definição de Classes, poderiamos colocar em um arquivo externo
+class Carro {
+    constructor(marca,modelo,ano, cor){
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.cor=cor;
+    }
+    velocidade = 0;
+    farol = 0;
+    marcha = 0;
+    position_x=0;
+
+    info(){
+        var info = "<strong>Dados do veículo</strong>:" +"<br>"+ "Marca: " + this.marca + "<br>" + "Modelo: " + this.modelo +"<br>"+ "Ano:" + this.ano +"<br>";
+        
+    }
+    status(){
+        var statusvel="";
+        var statusfarol=this.farol;
+        var statusmarcha="";
+
+        //status velocidade
+        if(this.velocidade>0){
+              statusvel = "Velocidade " + this.velocidade + " km/h <br><br>"   
+        }
+        else {
+            statusvel = "O Carro está parado <br><br>"  
+        }
+
+        //status farol 
+        if(statusfarol==0){
+            statusfarol="O farol está apagado <br><br>";
+        }
+        else if (statusfarol==1){
+            statusfarol="Farol baixo <br><br>";
+        }
+        else if (statusfarol==2){
+            statusfarol="Farol alto <br><br>";
+        }
+
+        //status marcha
+        statusmarcha="Marcha: " + this.marcha+"<br><br>";
+        
+        status = statusvel+statusfarol+statusmarcha;
+        return status;
+    }
+
+    infos(){
+        var infomarca = "";
+        var infoano = "";
+        var infomodelo = "";
+        var infos1 = "";
+
+        infomarca = "Marca: " + this.marca +"   |   ";
+        infoano = "Ano: " + this.ano +"  ";
+        infomodelo = "Modelo: " + this.modelo +"   |   ";
+
+        infos1 = infomarca + infomodelo + infoano;
+        return infos1;
+    }
+
+    ligarFarol(){
+        if(this.farol==0){
+            this.farol=1;
+        }
+        else if (this.farol==1){
+            this.farol=2;
+        }
+        else if (this.farol==2){
+            this.farol=1;
+        }
+    }
+    desligarFarol(){
+        this.farol=0;
+    }
+    acelerar (){
+        if(this.marcha==0){
+            alert("Você não pode acelerar antes de passar a marcha");
+        }
+        else if (this.marcha==1 && this.velocidade<50){
+                this.velocidade=this.velocidade+10;
+                
+        }
+        else if (this.marcha==1 && this.velocidade>=50){
+            alert("Você precisa aumentar a marcha para aumentar mais a velocidade");              
+        }
+
+        else if (this.marcha==2 && this.velocidade<100){
+            this.velocidade=this.velocidade+10;
+        }
+        else if (this.marcha==2 && this.velocidade>100){
+            alert("Você precisa aumentar a marcha para aumentar mais a velocidade");
+        }
+
+        else if (this.marcha==3 && this.velocidade<150){
+            this.velocidade=this.velocidade+10;
+        }
+        else if (this.marcha==3 && this.velocidade>150){
+            
+        }
+        else if (this.marcha==4 && this.velocidade!=0){
+            
+        }
+
+    }
+
+    marcharé(){
+        
+    }
+
+    frear (){
+        this.velocidade = this.velocidade-10
+    }
+
+    aumentarMarcha(){
+        if(this.marcha<4){
+            this.marcha=this.marcha+1;
+        }
+        else{
+            alert("Marcha Ré!")
+        }
+        
+    }
+
+    diminirMarcha(){
+        if(this.marcha>0){
+            this.marcha=this.marcha-1;
+        }
+    }
+    
+}
+var carCriado=false; // incialmente o Carro não foi criado
+
+function criarCarro(){
+    if(carCriado==false){
+        criar();
+        CriarPainel();
+        carCriado=true;
+
+        // Obtenha a marca selecionada
+        const marcaSelecionada = marcas.value;
+
+        // Aplique os estilos com base na marca selecionada
+        aplicarEstilosDeMarca(marcaSelecionada);
+    }
+    else {
+        alert("ERRO: Só é possível criar um carro por vez")
+    }
+    
+}
+
+// criar o objeto carro
+var carroGlobal;
+function criar(){
+        carro = new Carro(marcas.value,modelos.value,anos.value,cores.value)
+        //alert("Carro criado com sucesso " + carro.modelo)
+        var divCarro = document.createElement("div");
+
+        divCarro.setAttribute("id","divCarro");
+        divCarro.style.position="relative";
+        divCarro.style.width = "10%";
+        divCarro.style.height = "80px";
+        divCarro.style.border = "1px dotted black";
+        divCarro.style.borderRadius = "20px";
+        divCarro.style.background = cores.value;
+        divCarro.style.display = "flex";
+        divCarro.style.justifyContent="center";
+        divCarro.style.color="white";
+        document.getElementById("pista").appendChild(divCarro);
+
+        var infocarro = document.createElement("p");
+        infocarro.innerHTML = carro.marca + "<br>" + carro.modelo + "<br>" + carro.ano + "<br>";
+        divCarro.appendChild(infocarro);
+        carroGlobal=carro;
+}
+
+
+//Criando um Painel de Controle // Aula 28/08
+function CriarPainel(){
+    divControle = document.createElement("div");
+    divControle.style.position = "relative";
+    divControle.style.display="flex";
+    divControle.style.justifyContent="space-between";
+    divControle.style.width="15%";
+    divControle.style.height="100%";
+    divControle.style.border="1px solid black";
+    divControle.style.flexDirection = "column";
+    divControle.style.padding="0px";
+    divControle.style.margin="0px";
+    document.getElementById("h1painel").remove();
+    document.getElementById("divpainel").style.justifyContent="space-between";
+
+    // criar botões dentro da div de controle
+    bligar = document.createElement("button");
+    bligar.setAttribute("id","bligar");
+    bligar.innerHTML="Ligar Carro";
+    bligar.style.width="100%";
+    bligar.style.height="50px";
+    bligar.addEventListener("click",ligarCarro);
+    divControle.appendChild(bligar);
+
+    // criar botão do Farol
+    bfarol = document.createElement("button");
+    bfarol.setAttribute("id", "bfarol")
+    bfarol.innerHTML="Ligar Farol";
+    bfarol.style.width="100%";
+    bfarol.style.height="30px"
+    bfarol.disabled=true;
+
+    bfarol.addEventListener("click", ligarFarol, mudarnomebfarol);
+
+    divControle.appendChild(bfarol);
+
+    // criar botão desligar farol 
+    bdesligarfarol = document.createElement("button");
+    bdesligarfarol.innerHTML="Desligar Farol";
+    bdesligarfarol.style.width="100%";
+    bdesligarfarol.style.height="30px"
+    bdesligarfarol.disabled=true;
+
+    bdesligarfarol.addEventListener("click", desligarFarol)
+    divControle.appendChild(bdesligarfarol);
+
+    // criar botão da marcha
+    bmarcha = document.createElement("button");
+    bmarcha.setAttribute("id","bmarcha");
+    bmarcha.innerHTML="Aumentar Marcha";
+    bmarcha.style.width="100%";
+    bmarcha.style.height="30px"
+    bmarcha.disabled=true;
+    // eventos do botão de marcha
+    bmarcha.addEventListener("click",aumentarMarcha);
+    divControle.appendChild(bmarcha);
+    //
+
+    // criar botão de diminuir a marcha
+    bdiminuirmarcha = document.createElement("button");
+    bdiminuirmarcha.setAttribute("id","diminuirmarcha");
+    bdiminuirmarcha.innerHTML="Diminuir Marcha";
+    bdiminuirmarcha.style.width="100%";
+    bdiminuirmarcha.style.height="30px"
+    bdiminuirmarcha.disabled=true;
+
+    //evento diminuir marcha
+    bdiminuirmarcha.addEventListener("click", diminuirMarcha)
+    divControle.appendChild(bdiminuirmarcha);
+
+    // criar botão de acelerar
+    bacelerar = document.createElement("button");
+    bacelerar.setAttribute("id","bacelerar");
+    bacelerar.innerHTML="Acelerar";
+    bacelerar.style.width="100%";
+    bacelerar.style.height="30px"
+    bacelerar.disabled=true;
+
+    // Eventos do botão acelerar
+
+    bacelerar.addEventListener("click",acelerarCarro);
+    divControle.appendChild(bacelerar);
+
+    // Botão frear
+    bfrear = document.createElement("button");
+    bfrear.innerHTML="Frear";
+    bfrear.style.width="100%";
+    bfrear.style.height="30px"
+    bfrear.disabled=true;
+
+    bfrear.addEventListener("click", frearCarro)
+    divControle.appendChild(bfrear);
+    
+    document.getElementById("divpainel").appendChild(divControle);
+
+    //criando a div central
+    divCentro = document.createElement("div");
+    divCentro.setAttribute("id", "divcentro");
+    divCentro.style.position="relative";
+    divCentro.style.height="100%";
+    divCentro.style.width="70%";
+    divCentro.style.padding="0px";
+    divCentro.style.margin="0px"
+    divCentro.style.border="1px solid black";
+    divCentro.style.display="flex";
+    divCentro.style.alignItems="";
+    divCentro.style.justifyContent="";
+    divCentro.style.justifyItems="";
+    divCentro.style.color="black"
+    divCentro.style.backgroundColor="";
+    
+
+    // criando a div relógio que serão filhas da div central
+    divRelogio = document.createElement("div");
+    divRelogio.setAttribute("id", "relogio");
+    divRelogio.style.position="relative";
+    divRelogio.style.justifyContent="";
+    divRelogio.style.justifyItems=""
+    divRelogio.style.alignItems="";
+    divRelogio.style.alignContent="";
+    divRelogio.style.height="50px";
+    divRelogio.style.width="200px";
+    divRelogio.style.backgroundColor=""; 
+    divRelogio.style.top="10px";
+    divRelogio.style.fontSize="24px";
+    divRelogio.style.left="20px";
+    divRelogio.style.top="15px";
+
+    divCentro.appendChild(divRelogio);
+    relogio();
+
+     //div infosCentro
+     divInfos = document.createElement("div");
+    divInfos.setAttribute("id", "infos");
+    divInfos.style.position="relative";
+    divInfos.style.justifyContent="center";
+    divInfos.style.justifyItems="center"
+    divInfos.style.alignItems="center";
+    divInfos.style.alignContent="center";
+    divInfos.style.height="50px";
+    divInfos.style.width="600px";
+    divInfos.style.fontSize="100px";
+    divInfos.style.backgroundColor=""; 
+    divInfos.style.marginTop="100px";
+    divInfos.style.fontSize="24px";
+    divInfos.style.left="75px";
+    divInfos.style.right="px"
+    divInfos.style.top="150px";
+
+    divCentro.appendChild(divInfos);
+
+    // criando a div do mixer de audio
+    divAudio = document.createElement("div");
+    divAudio.setAttribute("id", "audio");
+    divAudio.style.position="relative";
+    divAudio.style.justifyContent="";
+    divAudio.style.justifyItems=""
+    divAudio.style.alignItems="";
+    divAudio.style.alignContent="";
+    divAudio.style.height="50px";
+    divAudio.style.width="250px";
+    divAudio.style.backgroundColor=""; 
+    divAudio.style.top="10px";
+    divAudio.style.fontSize="24px";
+    divAudio.style.left="-55px";
+    divAudio.style.right="10px"
+    divAudio.style.top="10px";
+
+    var mixaudio = document.createElement("audio");
+    mixaudio.controls=true;  
+    var source = document.createElement("source");
+    source.src = "audio.mp3";
+    source.type ="audio/mp3";
+
+    mixaudio.appendChild(source);
+    divAudio.appendChild(mixaudio);
+    divCentro.appendChild(divAudio);
+    
+
+    
+    document.getElementById("divpainel").appendChild(divCentro);
+
+    divStatus = document.createElement("div");
+    divStatus.setAttribute("id","divstatus");
+    divStatus.style.position="relative";
+    divStatus.style.width="15%";
+    divStatus.style.height = "100%";
+    divStatus.style.border="1px solid black";
+    divStatus.style.padding="0px"
+    divStatus.style.color="black";
+    divStatus.style.display="flex";
+    divStatus.style.justifyContent="center";
+    divStatus.style.alignItems = "center";
+    divStatus.style.alignContent="space-around";
+    divStatus.style.fontSize="20px";
+    document.getElementById("divpainel").appendChild(divStatus);
+
+    
+
+}
+
+simulacao=false; // indica que a simulação está desligada
+
+function ligarCarro(){
+    if(simulacao==false){
+        simulacao=true;
+        document.getElementById("bligar").innerHTML="Desligar Carro";
+        iniciarSimulacao();
+        
+    }
+    else{
+
+    }
+}
+
+function iniciarSimulacao(){
+    bfarol.disabled=false;
+    bacelerar.disabled=false;
+    bfrear.disabled=false;
+    bmarcha.disabled=false;
+    bdesligarfarol.disabled=false;
+    bdiminuirmarcha.disabled=false;
+    atualizarPainel();
+    atualizarPainel2();
+    idinterval1 = setInterval(animacaoBorda,200);
+
+}
+
+function animacaoBorda(){
+    divPainel = document.getElementById("divpainel");
+    divPista = document.getElementById("pista");
+
+    if(divPainel.style.borderColor!="red"){
+        divPainel.style.border="5px solid red";
+        divPista.style.border="5px solid red";
+    }
+    else {
+        divPainel.style.borderColor="black";
+        divPista.style.borderColor="black";
+    }
+}
+
+function atualizarPainel(){
+    document.getElementById("divstatus").innerHTML= carroGlobal.status();
+    
+}
+
+function atualizarPainel2(){
+    document.getElementById("infos").innerHTML= carroGlobal.infos();
+}
+
+function aumentarMarcha(){
+    carroGlobal.aumentarMarcha();
+    atualizarPainel();
+}
+
+function diminuirMarcha(){
+    carroGlobal.diminirMarcha();
+    atualizarPainel();
+    
+}
+
+function acelerarCarro(){
+    
+    carroGlobal.acelerar();
+    atualizarPainel();
+    clearInterval(idinterval2);
+
+    if(carroGlobal.marcha!=4){
+
+    if(carroGlobal.velocidade!=0){
+        idinterval2 = setInterval(mexerCarro,4000/carroGlobal.velocidade);
+    }
+    
+    function mexerCarro(){
+
+    if(carroGlobal.position_x==100){
+        carroGlobal.position_x=0;
+    }
+    else {
+        carroGlobal.position_x++;
+        document.getElementById("divCarro").style.left=carroGlobal.position_x+ "%";
+    }
+    }
+    } 
+    
+    else{
+    if(carroGlobal.velocidade!=0){
+        idinterval2 = setInterval(mexerCarro2,4000/carroGlobal.velocidade);
+    }
+
+    function mexerCarro2(){
+    if(carroGlobal.position_x==0){
+        carroGlobal.position_x=100;
+    }
+    else {
+        carroGlobal.position_x--;
+        document.getElementById("divCarro").style.left=carroGlobal.position_x+ "%";
+    }
+    }
+
+}
+}
+
+function frearCarro(){
+
+    atualizarPainel();
+    clearInterval(idinterval2);
+    
+    if(carroGlobal.velocidade!=0){
+        carroGlobal.frear();    
+    }
+
+    if(carroGlobal.velocidade!=0){
+        
+        idinterval2 = setInterval(mexerCarro,4000/carroGlobal.velocidade);
+    }
+    
+    function mexerCarro(){
+
+        if(carroGlobal.marcha!=4){
+
+            if(carroGlobal.position_x==100){
+                carroGlobal.position_x=0;
+            }
+            else {
+                carroGlobal.position_x++;
+                document.getElementById("divCarro").style.left=carroGlobal.position_x+ "%";
+            }
+        }
+        else{
+            if(carroGlobal.position_x==0){
+                carroGlobal.position_x=100;
+            }
+            else {
+                carroGlobal.position_x--;
+                document.getElementById("divCarro").style.left=carroGlobal.position_x+ "%";
+            }
+        }
+}
+    
+}
+
+function ligarFarol(){
+    carroGlobal.ligarFarol();
+    atualizarPainel();
+}
+
+function mudarnomebfarol(){
+
+    document.getElementById("bfarol")=bfarol;
+
+    if(bfarol.textContent==="Ligar Farol"){
+        bfarol.textContent="Farol Alto";
+    }
+    else{
+        bfarol.textContent="Farol baixo";
+    }
+}
+
+function desligarFarol(){
+    carroGlobal.desligarFarol();
+    atualizarPainel();
+}
+
+function relogio() {
+
+    function horaCerta(){
+        const hora = new Date();
+        document.getElementById("relogio").innerHTML=hora.toLocaleTimeString();
+    }
+
+    let horaId = setInterval(horaCerta, 1000);
+
+}
+
+function audio1(){
+
+
+}
+
+
+function reset(){
+   location.reload();
+}
+
+function aplicarEstilosDeMarca(marca) {
+    const divCarro = document.getElementById("divCarro");
+    const divPainel = document.getElementById("divpainel");
+
+    // Remover todas as classes de estilo anteriores
+    divCarro.classList.remove("fiat", "mercedes", "volks", "chevrolet");
+    divPainel.classList.remove("fiat", "mercedes", "volks", "chevrolet");
+
+    // Adicionar a classe de estilo apropriada com base na marca
+    switch (marca) {
+        case "Fiat":
+            divCarro.classList.add("fiat");
+            divPainel.classList.add("fiat");
+            break;
+        case "Mercedes":
+            divCarro.classList.add("mercedes");
+            divPainel.classList.add("mercedes");
+            break;
+        case "Volks":
+            divCarro.classList.add("volks");
+            divPainel.classList.add("volks");
+            break;
+        case "Chevrolet":
+            divCarro.classList.add("chevrolet");
+            divPainel.classList.add("chevrolet");
+            break;
+        default:
+            // Caso padrão para lidar com seleção inválida ou "Selecione"
+            break;
+    }
+}
+
+
+</script>
+
+</body>
+</html>

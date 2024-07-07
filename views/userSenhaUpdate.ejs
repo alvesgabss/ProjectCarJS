@@ -1,0 +1,18 @@
+<form action="atualizar-senha" method="post">
+    <fieldset>
+    <legend> Atualização de senha</legend><br>
+    Nova senha: <input type="password" id="usernewpasword" name="usernewpasword" ><br><br>
+    Confirme a nova senha: <input type="password" id="usernewpasword2" name="usernewpasword2"><br><br><br>
+    Senha atual: <input type="password" id="userpassword" name="userpassword"><br><br>
+ 
+    <input type="submit" value="Alterar senha">
+    </fieldset>
+    <p style="color:red">*Será necessário fazer login novamente</p>
+    </form>
+    
+    <% if (success) { %>
+        <script>
+            window.close();
+            window.opener.location.href="/login";
+        </script>
+        <% } %>

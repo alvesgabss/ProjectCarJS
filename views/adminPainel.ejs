@@ -1,0 +1,28 @@
+<h1>Painel de controle</h1>
+<h4>aqui é possível visualizar todos os usuários cadastrados no sistema e gerênciá-los</h4>
+
+<% if (users && users.length > 0) { %>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Login</th>
+            <th>Ações</th>
+        </tr>
+        <% users.forEach(function(user) { %>
+            <% if (user.id !== 1) { %> 
+                <tr>
+                    <td><%= user.nome %></td> 
+                    <td><%= user.login %></td>
+                    <td>
+                        <form method="POST" action="/deletar-usuario">
+                            <input type="hidden" name="userId" value="<%= user.id %>"> 
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        <% }); %>
+    </table>
+<% } else { %>
+    <p>Nenhum usuário cadastrado.</p>
+<% } %>

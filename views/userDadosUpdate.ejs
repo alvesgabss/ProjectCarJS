@@ -1,0 +1,23 @@
+<form action="atualizar-usuario" method="post">
+<fieldset>
+<legend> Dados Pessoais</legend>
+Nome: <input type="text" id="userName" name="userName" value="<%= user.nome%>">
+Login: <input type="text" id="userName" name="userName" value="<%= user.login%>" disabled><br><br>
+CEP: <input type="text" id="cep" name="cep" value="<%= user.cep%>" required><br><br>
+Bairro: <input type="text" id="bairro" name="bairro" value="<%= user.bairro%>" required><br><br>
+Rua: <input type="text" id="rua" name="rua" value="<%= user.rua%>" required><br><br>
+Número da Casa: <input type="text" id="numero" name="numeroCasa" value="<%= user.numeroCasa%>" required><br><br>
+E-mail: <input type="email" id="email" name="email" value="<%= user.email%>" required><br><br>
+Telefone: <input type="tel" id="telefone" name="telefone" value="<%= user.telefone%>" required><br><br>
+
+<input type="submit" value="Atualizar dados">
+</fieldset>
+<p style="color:red">O Login não pode ser alterado</p>
+</form>
+
+<% if (success) { %>
+    <script>
+        window.opener.location.reload();
+        window.close();
+    </script>
+    <% } %>

@@ -1,0 +1,62 @@
+
+<link rel="stylesheet" href="./css/user.css">
+<h3>Área do usuário, aqui você pode alterar seus dados pessoais, como seu nome, endereço, senha, etc</h3>
+
+
+<div style="border:1px solid black; padding: 50px; background-color: gray; width: 50px;"> Foto do usuário </div>
+<a href="#">nova foto</a>
+
+<h4> Dados pessoais </h4>
+
+<p><b>Nome: </b><%= user.nome%> </p> 
+<p><b>Usuario: </b><%= user.login%> </p>
+<p><b>CEP: </b><%= user.cep%> </p>
+<p><b>Bairro: </b><%= user.bairro%> </p>
+<p><b>Rua: </b><%= user.rua%> </p>
+<p><b>Numero casa: </b><%= user.numeroCasa%> </p>
+<p><b>Email: </b><%= user.email%> </p>
+<p><b>Telefone: </b><%= user.telefone%> </p>
+
+<h5 style="color:red; margin-bottom: 50px;"> Acrescentar nesta página também os outros dados pessoais solicitados no projeto, como, por exemplo,  dados de endereço do usuário logado</h5>
+
+<div >
+<a href="#" class="usermenu" id="alterarDados">Alterar dados</a>
+<a href="#" class="usermenu" id="alterarSenha">Alterar senha</a>
+</div>
+
+<script>
+    botao1=document.getElementById("alterarDados");
+    botao2=document.getElementById("alterarSenha");
+
+    botao1.addEventListener("click", popupDados)
+    botao2.addEventListener("click", popupSenha)
+    
+
+    function popupDados(){
+        var width = 600;
+        var height = 400;
+
+        var left = window.innerWidth / 2 - width / 2 + window.screenX;
+        var top = window.innerHeight / 2 - height / 2 + window.screenY;
+        var params = `width=${width}, height=${height}, left=${left}, top=${top}`;
+        window.open('userDadosUpdate', 'Popup', params);
+    }
+    function popupSenha(){
+        var width = 600;
+        var height = 400;
+
+        var left = window.innerWidth / 2 - width / 2 + window.screenX;
+        var top = window.innerHeight / 2 - height / 2 + window.screenY;
+        var params = `width=${width}, height=${height}, left=${left}, top=${top}`;
+        window.open('userSenhaUpdate', 'Popup', params);
+
+    }
+    </script>
+
+
+
+
+
+    
+
+

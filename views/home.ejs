@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: bisque;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #444;
+        }
+
+        .navbar-top ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-top li {
+            margin: 0 10px;
+        }
+
+        .navbar-top a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-top a:hover {
+            color: #ffc107;
+        }
+
+        .conteudo-principal {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar-top">
+            <!-- Adicione seus elementos de navegação aqui -->
+        </div>
+    </header>
+
+    <% if (login == "logado") { %>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById("titulo1").innerHTML = "Boas vindas ao sistema de simulação do carrinho, clique no botão abaixo para começar"
+            })
+        </script>
+    <% } %>
+
+    <% if (successLogin) { %>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                alert("<%=successLogin%>")
+            })
+        </script>
+    <% } %>
+
+    <div class="conteudo-principal">
+        <h1 id="titulo1">Boas-vindas ao sistema de simulação de carrinho<br>faça login para acessar</h1>
+        <% if (login == "logado") { %>
+            <a href="simulador">Simulador</a>
+        <% } %>
+    </div>
+
+    <footer>
+        &copy; Fabio e Gabriel - Oficina 2 alunos
+    </footer>
+</body>
+</html>

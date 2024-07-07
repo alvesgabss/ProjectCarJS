@@ -1,0 +1,122 @@
+
+@import url('https://fonts.cdnfonts.com/css/fastup');
+
+body {
+    background-color: #fffffc;
+}
+
+.Pista {
+    position: relative;
+    border: 1px solid black;
+    width: 100%;
+    height: 100px;
+    top: 20px;
+    display:flex;
+    align-items: center;
+    background-image: url("pista-background.jpeg") ; 
+    
+}
+
+#divpainel{
+    position: relative;
+    border: 1px solid black;
+    width: 100%;
+    height: 300px;
+    top: 80px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+
+#form1 select {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#form1 input[type="color"]{
+    margin-bottom: 10px;
+}
+
+#divform1{
+   /* border: 1px solid black;*/
+    position: relative;
+    
+    width: 40%;
+}
+
+#divform1 button {
+    position: relative;
+    left: 180px;
+}
+
+#divform2 {
+    position: relative;
+    /*border: 1px solid black;*/
+    width: 40%
+}
+
+#divformularios{
+    font-family: 'Fastup', sans-serif;
+    position: relative;
+    display: flex;
+    top: 120px;
+    border: 1px solid black;
+    
+}
+
+#divrelogio {
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    background-color: aqua;
+}
+
+   button {
+
+     font-family: 'Fastup', sans-serif;
+     background-color: #f3f7fe;
+     color: bl;
+     border: none;
+     border-radius: 8px;
+     width: 100px;
+     height: 45px;
+     transition: .3s;
+     }
+     
+     button:hover {
+     background-color: #1b1b1b;
+     box-shadow: 0 0 0 5px #a3cc4b65;
+     color: #aeff00;
+    }
+
+    
+.fiat {
+    background-color: #58c689; 
+    color: white; 
+}
+
+
+.mercedes {
+    background-color: #eff1f0; 
+    color: white; 
+}
+
+
+.volks {
+    background-color: #f8fcff; 
+    color: white; 
+}
+
+
+.chevrolet {
+    background-color: #7e5dca; 
+    color: white; 
+}
+
+  
+
+

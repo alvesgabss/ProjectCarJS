@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./css/main.css">
+    
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: #333;
+    color: white;
+}
+
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.navbar-top ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+
+.navbar-top li {
+    margin: 0 10px;
+}
+
+
+.navbar-top a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.navbar-top a:hover {
+    color: yellow;
+}
+
+.conteudo-principal {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+    </style>
+    <header>
+        <div class="navbar-top">
+            <ul>
+                <% if (user.login!="") { %>
+                <li><a href="user"><%= user.nome%></a></li>
+                <% } %>
+                <% if (user.login=="admin") { %>
+                    <li><a href="listar-usuarios">Painel de Controle</a></li>
+                    <% } %>
+            </ul>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="sobre">Sobre</a></li>
+                <li><a href="cadastro">Cadastro</a></li>
+                <% if (login === "deslogado") { %>
+                    <li><a href="login">Login</a></li>
+                <% } else { %>
+                    <li><a href="logout">Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </header>
+
+    <div class="conteudo-principal">
+        <%- include(contentFile) %>
+    </div>
+
+
+
+    <footer></footer>
+    
+</body>
+</html>
