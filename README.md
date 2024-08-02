@@ -5,6 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <p>Um desenvolvedor de sistemas de soluções e contribuição para a Ciência e Tecnologia. Aqui é onde compartilho meus projetos, pensamentos e jornada de aprendizado.</p>
+    <p>Projeto de Carro Didático utilizando Javascript e as HTML/CSS como linguagens de texto e estilização respectivamente.</p>
 </body>
 </html>
