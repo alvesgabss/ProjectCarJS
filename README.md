@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <p>Projeto de Carro Didático utilizando Javascript e HTML/CSS como linguagens de texto e estilização respectivamente.</p>
-</body>
-</html>
+# Projeto Carro Didático
+
+Projeto desenvolvido utilizando **JavaScript** e **HTML/CSS** para simular um carro didático interativo.  
+O objetivo é auxiliar no aprendizado de programação para internet através de um exemplo prático.
+
+## Tecnologias Utilizadas
+- HTML5  
+- CSS3  
+- JavaScript  
+
